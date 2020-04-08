@@ -14,14 +14,14 @@ let aggregatedResult = {
     "tests": []
 };
 
-concatenatedReport.forEach((report) => {
+concatenatedReport.forEach(report => {
     aggregatedResult["passed"] += report["passed"];
     aggregatedResult["total"] += report["total"];
     aggregatedResult["failed"] += (report["total"] - report["passed"] - report["skipped"]);
     aggregatedResult["skipped"] += report["skipped"];
-    report["fixtures"].filter((fixture) => fixture["meta"]["feature"] === aggregatedResult["name"])
-        .forEach((filteredFixture) => filteredFixture["tests"]
-            .forEach((test) => {
+    report["fixtures"].filter(fixture => fixture["meta"]["feature"] === aggregatedResult["name"])
+        .forEach(filteredFixture => filteredFixture["tests"]
+            .forEach(test => {
                 test["userAgent"] = report["userAgents"][0];
                 aggregatedResult["tests"].push(test);
             }));
